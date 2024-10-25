@@ -22,8 +22,7 @@
       "Requirements": [
         "Rcpp",
         "dplyr",
-        "openxlsx",
-        "shiny"
+        "openxlsx"
       ],
       "Hash": "5a5855d70bd5035e27719b3c521db791"
     },
@@ -207,6 +206,16 @@
         "methods"
       ],
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86"
+    },
+    "gitcreds": {
+      "Package": "gitcreds",
+      "Version": "0.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "ab08ac61f3e1be454ae21911eb8bc2fe"
     },
     "glue": {
       "Package": "glue",

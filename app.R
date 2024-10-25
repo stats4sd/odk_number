@@ -1,5 +1,6 @@
 
 library(shiny)
+library(gitcreds)
 #devtools::install_github("sdumble1/ODKTools")
 library(ODKTools)
 library(dplyr)
@@ -10,7 +11,7 @@ ui <- fluidPage(
     # Application title
     titlePanel("Add Question Numbers To ODK"),
 
-    # Sidebar with a slider input for number of bins 
+    # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(selectInput("main",label="Main Question type",choices=c("1,2,3,4"="numbers","a,b,c,d"="letters",
                                                                              "A,B,C,D"="LETTERS"),selected="numbers"),
@@ -29,7 +30,7 @@ mainPanel(
             )
            ,tabPanel("View Modified Survey Sheet",tableOutput("formview"))
             )
-           
+
         )
     )
 )
@@ -39,15 +40,15 @@ mainPanel(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
 
-    
-infile<-reactive({ 
+
+infile<-reactive({
     inFile<-input$file1
 
 if (is.null(inFile))
     return(NULL)
-    
+
     inFile$datapath %>%
-        read.odk() 
+        read.odk()
 })
 
 
@@ -56,7 +57,7 @@ output$table1<-renderTable({
         return(NULL)
     summary(infile())
    })
-    
+
 outfile<-reactive({
         infile()    %>%
         add_question_numbers(maintype = input$main,subtype = input$sub)
@@ -72,7 +73,7 @@ output$downloadData <- downloadHandler(
 
 filename = function() {
     name<-gsub(".xlsx","",basename(input$file1$name))
-    
+
     paste(name,'_odknumbered', '.xlsx', sep='')
 }
 ,
@@ -85,5 +86,5 @@ content = function(con) {
 
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
