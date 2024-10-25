@@ -22,7 +22,8 @@
       "Requirements": [
         "Rcpp",
         "dplyr",
-        "openxlsx"
+        "openxlsx",
+        "shiny"
       ],
       "Hash": "5a5855d70bd5035e27719b3c521db791"
     },
